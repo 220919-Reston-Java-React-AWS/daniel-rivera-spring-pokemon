@@ -26,7 +26,7 @@ public class TrainerController {
         Trainer search = new Trainer();
         search.setId(id);
 
-        return ResponseEntity.ok(this.trainerService.getAllPokemon(search));
+        return ResponseEntity.ok(this.trainerService.getAllPokemon(search).pokemons);
     }
 
     //add pokemon to trainer's list
@@ -37,12 +37,9 @@ public class TrainerController {
         trainer.setId(id);
         
         //get trainers pokemon list
-        List<Pokemon> trainerPokemon = this.trainerService.getAllPokemon(trainer);
+        trainer = this.trainerService.getAllPokemon(trainer);
         //add pokemon to list
-        trainerPokemon.add(newPokemon);
-        
-        //set the update
-        trainer.pokemons = trainerPokemon;
+        trainerPokemon.pokemons.add(newPokemon);
 
         //patch data
         return ResponseEntity.ok(this.trainerService.patchTrainerPokemon(trainer));

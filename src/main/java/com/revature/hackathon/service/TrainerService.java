@@ -22,9 +22,8 @@ public class TrainerService {
     }
 
     //return list of pokemon
-    public List<Pokemon> getAllPokemon(Trainer search){
-        Trainer found = this.trainerRepository.findById(search);
-        return found.pokemons;
+    public Trainer getAllPokemon(Trainer search){
+        return this.trainerRepository.findById(search);
     }
 
     //update pokemon level
